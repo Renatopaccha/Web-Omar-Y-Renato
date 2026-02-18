@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router';
 import { Home, Search, ArrowLeft } from 'lucide-react';
 import { Button } from '../components/ui/Button';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function NotFound() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-white">
@@ -14,10 +16,10 @@ export default function NotFound() {
           </div>
           <h1 className="text-7xl font-bold text-primary mb-4">404</h1>
           <h2 className="text-3xl font-semibold text-foreground mb-4">
-            Página no encontrada
+            {t('notfound.title')}
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Lo sentimos, la página que buscas no existe o ha sido movida.
+            {t('notfound.desc')}
           </p>
         </div>
 
@@ -28,48 +30,48 @@ export default function NotFound() {
             variant="outline"
           >
             <ArrowLeft className="w-5 h-5" />
-            Volver atrás
+            {t('notfound.back')}
           </Button>
           <Button
             size="lg"
             onClick={() => navigate('/')}
           >
             <Home className="w-5 h-5" />
-            Ir al inicio
+            {t('notfound.home')}
           </Button>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-sm text-muted-foreground mb-4">
-            ¿Necesitas ayuda? Visita nuestras páginas principales:
+            {t('notfound.help')}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <button
               onClick={() => navigate('/demos')}
               className="text-sm text-primary hover:underline"
             >
-              Demos
+              {t('notfound.nav.demos')}
             </button>
             <span className="text-muted-foreground">•</span>
             <button
               onClick={() => navigate('/pricing')}
               className="text-sm text-primary hover:underline"
             >
-              Planes
+              {t('notfound.nav.pricing')}
             </button>
             <span className="text-muted-foreground">•</span>
             <button
               onClick={() => navigate('/about')}
               className="text-sm text-primary hover:underline"
             >
-              Sobre nosotros
+              {t('notfound.nav.about')}
             </button>
             <span className="text-muted-foreground">•</span>
             <button
               onClick={() => navigate('/contact')}
               className="text-sm text-primary hover:underline"
             >
-              Contacto
+              {t('notfound.nav.contact')}
             </button>
           </div>
         </div>

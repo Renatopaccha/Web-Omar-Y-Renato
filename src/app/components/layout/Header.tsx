@@ -36,9 +36,10 @@ export function Header() {
   ];
 
   const languages: Language[] = ['ES', 'EN', 'DE', 'FR'];
+  const flags: Record<Language, string> = { ES: '🇪🇸', EN: '🇬🇧', DE: '🇩🇪', FR: '🇫🇷' };
 
   return (
-    <motion.header 
+    <motion.header
       className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -48,7 +49,7 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <motion.div 
+            <motion.div
               className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center"
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
@@ -70,9 +71,8 @@ export function Header() {
               >
                 <Link
                   to={item.path}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === item.path ? 'text-primary' : 'text-muted-foreground'
-                  }`}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-muted-foreground'
+                    }`}
                 >
                   {item.label}
                 </Link>
@@ -90,13 +90,13 @@ export function Header() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Globe className="w-4 h-4 text-muted-foreground" />
+                <span className="text-base">{flags[language]}</span>
                 <span className="text-sm font-medium">{language}</span>
               </motion.button>
-              
+
               <AnimatePresence>
                 {langDropdownOpen && (
-                  <motion.div 
+                  <motion.div
                     className="absolute right-0 mt-2 w-32 bg-white rounded-xl border border-border shadow-lg py-2"
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -110,13 +110,12 @@ export function Header() {
                           setLanguage(lang);
                           setLangDropdownOpen(false);
                         }}
-                        className={`w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors ${
-                          language === lang ? 'text-primary font-medium' : 'text-foreground'
-                        }`}
+                        className={`w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors ${language === lang ? 'text-primary font-medium' : 'text-foreground'
+                          }`}
                         whileHover={{ x: 4 }}
                         transition={{ duration: 0.2 }}
                       >
-                        {lang}
+                        <span className="mr-2">{flags[lang]}</span>{lang}
                       </motion.button>
                     ))}
                   </motion.div>
@@ -145,7 +144,7 @@ export function Header() {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div 
+            <motion.div
               className="lg:hidden py-4 border-t border-border"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
@@ -163,9 +162,8 @@ export function Header() {
                     <Link
                       to={item.path}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`text-base font-medium transition-colors hover:text-primary ${
-                        location.pathname === item.path ? 'text-primary' : 'text-muted-foreground'
-                      }`}
+                      className={`text-base font-medium transition-colors hover:text-primary ${location.pathname === item.path ? 'text-primary' : 'text-muted-foreground'
+                        }`}
                     >
                       {item.label}
                     </Link>
@@ -179,13 +177,12 @@ export function Header() {
                         setLanguage(lang);
                         setMobileMenuOpen(false);
                       }}
-                      className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
-                        language === lang ? 'bg-primary text-white' : 'bg-muted text-foreground'
-                      }`}
+                      className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${language === lang ? 'bg-primary text-white' : 'bg-muted text-foreground'
+                        }`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      {lang}
+                      <span className="mr-1">{flags[lang]}</span>{lang}
                     </motion.button>
                   ))}
                 </div>

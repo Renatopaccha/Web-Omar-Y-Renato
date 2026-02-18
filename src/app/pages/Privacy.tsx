@@ -1,45 +1,48 @@
 import { Shield, Eye, Lock, Mail } from 'lucide-react';
 import { Card } from '../components/ui/Card';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Privacy() {
+  const { t } = useLanguage();
+
   const sections = [
     {
       icon: Shield,
-      title: 'Qué información recopilamos',
+      title: t('privacy.page.s1.title'),
       content: [
-        'Datos de contacto: nombre, email, teléfono y ubicación (solo cuando nos los proporcionas a través de formularios).',
-        'Información del navegador: tipo de navegador, dispositivo y páginas visitadas (datos anónimos para mejorar la experiencia).',
-        'NO recopilamos información clínica ni datos sensibles de salud.',
+        t('privacy.page.s1.i1'),
+        t('privacy.page.s1.i2'),
+        t('privacy.page.s1.i3'),
       ],
     },
     {
       icon: Eye,
-      title: 'Cómo usamos tu información',
+      title: t('privacy.page.s2.title'),
       content: [
-        'Para preparar y enviar cotizaciones personalizadas.',
-        'Para comunicarnos contigo sobre tu proyecto.',
-        'Para mejorar nuestros servicios y contenido del sitio.',
-        'NUNCA vendemos, compartimos o cedemos tus datos a terceros con fines comerciales.',
+        t('privacy.page.s2.i1'),
+        t('privacy.page.s2.i2'),
+        t('privacy.page.s2.i3'),
+        t('privacy.page.s2.i4'),
       ],
     },
     {
       icon: Lock,
-      title: 'Seguridad de tus datos',
+      title: t('privacy.page.s3.title'),
       content: [
-        'Usamos conexiones seguras (HTTPS) para proteger tu información.',
-        'Almacenamos datos en servidores seguros con acceso restringido.',
-        'Aplicamos medidas técnicas para prevenir accesos no autorizados.',
-        'Conservamos tus datos solo el tiempo necesario para gestionar tu proyecto.',
+        t('privacy.page.s3.i1'),
+        t('privacy.page.s3.i2'),
+        t('privacy.page.s3.i3'),
+        t('privacy.page.s3.i4'),
       ],
     },
     {
       icon: Mail,
-      title: 'Tus derechos',
+      title: t('privacy.page.s4.title'),
       content: [
-        'Acceso: puedes solicitar una copia de tus datos en cualquier momento.',
-        'Rectificación: puedes corregir información incorrecta.',
-        'Eliminación: puedes solicitar que eliminemos tus datos.',
-        'Para ejercer estos derechos, contáctanos en contacto@clinicaweb.com',
+        t('privacy.page.s4.i1'),
+        t('privacy.page.s4.i2'),
+        t('privacy.page.s4.i3'),
+        t('privacy.page.s4.i4'),
       ],
     },
   ];
@@ -51,10 +54,10 @@ export default function Privacy() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-              Privacidad y protección de datos
+              {t('privacy.page.hero.title')}
             </h1>
             <p className="text-lg text-muted-foreground">
-              Tu privacidad es importante. Así es como protegemos y usamos tu información.
+              {t('privacy.page.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -66,10 +69,10 @@ export default function Privacy() {
           <div className="mb-12">
             <Card className="p-8 bg-accent/50">
               <p className="text-foreground leading-relaxed">
-                <span className="font-semibold">Última actualización:</span> Febrero 2026
+                <span className="font-semibold">{t('privacy.page.updated')}</span> {t('privacy.page.updated.date')}
               </p>
               <p className="text-muted-foreground mt-3 leading-relaxed">
-                En ClinicaWeb, respetamos tu privacidad y nos comprometemos a proteger tus datos personales. Esta política explica de forma clara y simple cómo tratamos tu información.
+                {t('privacy.page.intro')}
               </p>
             </Card>
           </div>
@@ -104,13 +107,13 @@ export default function Privacy() {
           <div className="mt-8">
             <Card className="p-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">
-                Cookies y tecnologías similares
+                {t('privacy.page.cookies.title')}
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Usamos cookies técnicas necesarias para el funcionamiento del sitio (por ejemplo, para mantener tu idioma seleccionado). No usamos cookies de publicidad o seguimiento invasivo.
+                {t('privacy.page.cookies.p1')}
               </p>
               <p className="text-sm text-muted-foreground">
-                Puedes configurar tu navegador para rechazar cookies, pero esto puede afectar algunas funcionalidades del sitio.
+                {t('privacy.page.cookies.p2')}
               </p>
             </Card>
           </div>
@@ -119,10 +122,10 @@ export default function Privacy() {
           <div className="mt-8">
             <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10">
               <h2 className="text-2xl font-semibold text-foreground mb-4">
-                ¿Preguntas sobre privacidad?
+                {t('privacy.page.contact.title')}
               </h2>
               <p className="text-muted-foreground mb-4">
-                Si tienes dudas sobre cómo tratamos tus datos o quieres ejercer tus derechos, contáctanos:
+                {t('privacy.page.contact.desc')}
               </p>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary" />
@@ -136,7 +139,7 @@ export default function Privacy() {
           {/* Footer note */}
           <div className="mt-12 text-center">
             <p className="text-sm text-muted-foreground">
-              Nos reservamos el derecho de actualizar esta política. Te notificaremos de cambios importantes.
+              {t('privacy.page.footer')}
             </p>
           </div>
         </div>

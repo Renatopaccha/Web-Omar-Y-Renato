@@ -4,7 +4,8 @@ import { useLanguage } from '../../context/LanguageContext';
 export function Footer() {
   const { t, language, setLanguage } = useLanguage();
 
-  const languages = ['ES', 'EN', 'DE', 'FR'];
+  const languages = ['ES', 'EN', 'DE', 'FR'] as const;
+  const flags: Record<string, string> = { ES: '🇪🇸', EN: '🇬🇧', DE: '🇩🇪', FR: '🇫🇷' };
 
   return (
     <footer className="bg-muted border-t border-border">
@@ -19,7 +20,7 @@ export function Footer() {
               <span className="text-xl font-semibold text-foreground">ClinicaWeb</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md">
-              Sitios web profesionales para consultorios médicos y dentales. Diseño moderno, enfocado en conversión y optimizado para móviles.
+              {t('footer.description')}
             </p>
           </div>
 
@@ -65,17 +66,16 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-            
+
             <div className="flex items-center gap-2 flex-wrap">
               {languages.map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang as any)}
-                  className={`px-2 py-1 text-xs rounded-lg transition-colors ${
-                    language === lang ? 'bg-primary text-white' : 'bg-white text-muted-foreground hover:bg-accent'
-                  }`}
+                  className={`px-2 py-1 text-xs rounded-lg transition-colors ${language === lang ? 'bg-primary text-white' : 'bg-white text-muted-foreground hover:bg-accent'
+                    }`}
                 >
-                  {lang}
+                  <span className="mr-1">{flags[lang]}</span>{lang}
                 </button>
               ))}
             </div>

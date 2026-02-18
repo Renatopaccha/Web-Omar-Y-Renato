@@ -3,8 +3,10 @@ import { Mail, MessageSquare, Phone, MapPin, Clock } from 'lucide-react';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     consultorio: '',
@@ -19,7 +21,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here would be the form submission logic
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
   };
@@ -27,21 +28,21 @@ export default function Contact() {
   const contactMethods = [
     {
       icon: Mail,
-      title: 'Email',
-      value: 'contacto@clinicaweb.com',
-      description: 'Respuesta en 24-48 horas',
+      title: t('contact.page.method1.title'),
+      value: t('contact.page.method1.value'),
+      description: t('contact.page.method1.desc'),
     },
     {
       icon: MessageSquare,
-      title: 'WhatsApp',
-      value: '+34 600 000 000',
-      description: 'Horario de oficina',
+      title: t('contact.page.method2.title'),
+      value: t('contact.page.method2.value'),
+      description: t('contact.page.method2.desc'),
     },
     {
       icon: Phone,
-      title: 'Llamada',
-      value: 'Previa cita',
-      description: 'Agenda tu llamada',
+      title: t('contact.page.method3.title'),
+      value: t('contact.page.method3.value'),
+      description: t('contact.page.method3.desc'),
     },
   ];
 
@@ -52,10 +53,10 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-              Hablemos de tu proyecto
+              {t('contact.page.hero.title')}
             </h1>
             <p className="text-lg text-muted-foreground">
-              Cuéntanos sobre tu consultorio y te preparamos una propuesta personalizada
+              {t('contact.page.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -69,10 +70,10 @@ export default function Contact() {
             <div>
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-foreground mb-3">
-                  Solicita tu cotización
+                  {t('contact.page.form.title')}
                 </h2>
                 <p className="text-muted-foreground">
-                  Completa el formulario y te responderemos en menos de 48 horas con una propuesta detallada.
+                  {t('contact.page.form.subtitle')}
                 </p>
               </div>
 
@@ -83,10 +84,10 @@ export default function Contact() {
                       <Mail className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold text-foreground mb-2">
-                      ¡Mensaje enviado!
+                      {t('contact.page.form.success.title')}
                     </h3>
                     <p className="text-muted-foreground">
-                      Gracias por contactarnos. Te responderemos en 24-48 horas.
+                      {t('contact.page.form.success.desc')}
                     </p>
                   </div>
                 </Card>
@@ -96,11 +97,11 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          Tu nombre <span className="text-destructive">*</span>
+                          {t('contact.page.form.name')} <span className="text-destructive">*</span>
                         </label>
                         <Input
                           type="text"
-                          placeholder="Ej: Dr. Juan Pérez"
+                          placeholder={t('contact.page.form.name.placeholder')}
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           required
@@ -108,11 +109,11 @@ export default function Contact() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          Consultorio <span className="text-destructive">*</span>
+                          {t('contact.page.form.consultorio')} <span className="text-destructive">*</span>
                         </label>
                         <Input
                           type="text"
-                          placeholder="Nombre del consultorio"
+                          placeholder={t('contact.page.form.consultorio.placeholder')}
                           value={formData.consultorio}
                           onChange={(e) => setFormData({ ...formData, consultorio: e.target.value })}
                           required
@@ -123,11 +124,11 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          País <span className="text-destructive">*</span>
+                          {t('contact.page.form.country')} <span className="text-destructive">*</span>
                         </label>
                         <Input
                           type="text"
-                          placeholder="Ej: España"
+                          placeholder={t('contact.page.form.country.placeholder')}
                           value={formData.country}
                           onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                           required
@@ -135,11 +136,11 @@ export default function Contact() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          Email <span className="text-destructive">*</span>
+                          {t('contact.page.form.email')} <span className="text-destructive">*</span>
                         </label>
                         <Input
                           type="email"
-                          placeholder="tu@email.com"
+                          placeholder={t('contact.page.form.email.placeholder')}
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
@@ -150,7 +151,7 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          WhatsApp <span className="text-muted-foreground text-xs">(opcional)</span>
+                          {t('contact.page.form.whatsapp')} <span className="text-muted-foreground text-xs">{t('contact.page.form.whatsapp.optional')}</span>
                         </label>
                         <Input
                           type="tel"
@@ -161,7 +162,7 @@ export default function Contact() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
-                          Plan de interés <span className="text-destructive">*</span>
+                          {t('contact.page.form.plan')} <span className="text-destructive">*</span>
                         </label>
                         <select
                           className="w-full px-4 py-3 rounded-xl border border-input focus:outline-none focus:ring-2 focus:ring-ring transition-all"
@@ -169,24 +170,24 @@ export default function Contact() {
                           onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                           required
                         >
-                          <option value="">Selecciona un plan</option>
-                          <option value="presencia">Presencia Profesional ($299)</option>
-                          <option value="contacto">Citas por Contacto ($499)</option>
-                          <option value="reserva">Reserva Online ($799)</option>
-                          <option value="pro">Pro con Panel Admin ($1,499)</option>
-                          <option value="custom">Proyecto personalizado</option>
-                          <option value="consulta">Solo consulta</option>
+                          <option value="">{t('contact.page.form.plan.default')}</option>
+                          <option value="presencia">{t('contact.page.form.plan.presencia')}</option>
+                          <option value="contacto">{t('contact.page.form.plan.contacto')}</option>
+                          <option value="reserva">{t('contact.page.form.plan.reserva')}</option>
+                          <option value="pro">{t('contact.page.form.plan.pro')}</option>
+                          <option value="custom">{t('contact.page.form.plan.custom')}</option>
+                          <option value="consulta">{t('contact.page.form.plan.consulta')}</option>
                         </select>
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
-                        Cuéntanos sobre tu proyecto <span className="text-destructive">*</span>
+                        {t('contact.page.form.message')} <span className="text-destructive">*</span>
                       </label>
                       <textarea
                         className="w-full px-4 py-3 rounded-xl border border-input focus:outline-none focus:ring-2 focus:ring-ring transition-all min-h-[120px]"
-                        placeholder="Describe tu consultorio, servicios principales, y qué esperas lograr con tu sitio web..."
+                        placeholder={t('contact.page.form.message.placeholder')}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         required
@@ -194,11 +195,11 @@ export default function Contact() {
                     </div>
 
                     <Button type="submit" size="lg" className="w-full">
-                      Enviar cotización
+                      {t('contact.page.form.submit')}
                     </Button>
 
                     <p className="text-xs text-muted-foreground text-center">
-                      Al enviar este formulario, aceptas que procesemos tus datos de contacto para preparar una propuesta. No solicitamos información clínica o de pacientes.
+                      {t('contact.page.form.privacy')}
                     </p>
                   </form>
                 </Card>
@@ -209,7 +210,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div>
                 <h2 className="text-2xl font-bold text-foreground mb-6">
-                  Otras formas de contacto
+                  {t('contact.page.methods.title')}
                 </h2>
                 <div className="space-y-4">
                   {contactMethods.map((method, index) => {
@@ -240,17 +241,17 @@ export default function Contact() {
 
               <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10">
                 <h3 className="text-xl font-semibold text-foreground mb-4">
-                  Proyectos personalizados
+                  {t('contact.page.custom.title')}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  ¿Necesitas algo más complejo? Podemos ayudarte con:
+                  {t('contact.page.custom.desc')}
                 </p>
                 <ul className="space-y-2 mb-6">
                   {[
-                    'Múltiples sedes o consultorios',
-                    'Integraciones con tu sistema actual',
-                    'Funciones especiales (pagos, telemedicina)',
-                    'Migraciones de sitios existentes',
+                    t('contact.page.custom.item1'),
+                    t('contact.page.custom.item2'),
+                    t('contact.page.custom.item3'),
+                    t('contact.page.custom.item4'),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="text-primary">•</span>
@@ -259,7 +260,7 @@ export default function Contact() {
                   ))}
                 </ul>
                 <p className="text-sm text-foreground font-medium">
-                  Escríbenos con los detalles y te preparamos una cotización personalizada.
+                  {t('contact.page.custom.footer')}
                 </p>
               </Card>
 
@@ -268,10 +269,10 @@ export default function Contact() {
                   <Clock className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">
-                      Tiempo de respuesta
+                      {t('contact.page.response.title')}
                     </h4>
                     <p className="text-sm text-muted-foreground">
-                      Respondemos todas las cotizaciones en 24-48 horas hábiles. Si es urgente, contáctanos por WhatsApp.
+                      {t('contact.page.response.desc')}
                     </p>
                   </div>
                 </div>
