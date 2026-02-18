@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Check, ExternalLink } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
 
 export default function Demos() {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Demos() {
       id: 1,
       title: 'Clínica Dental Moderna',
       category: 'dental',
-      image: 'dental clinic interior',
+      emoji: '🦷',
       features: [
         'Catálogo de servicios',
         'Reserva online integrada',
@@ -29,38 +29,41 @@ export default function Demos() {
         'Formulario de contacto',
       ],
       available: true,
+      route: '/demos/odontologia',
     },
     {
       id: 2,
       title: 'Consultorio Medicina General',
       category: 'medical',
-      image: 'doctor consultation room',
+      emoji: '🏥',
       features: [
         'Información de servicios',
         'Horarios de atención',
         'Ubicación con mapa',
         'Solicitud de cita',
       ],
-      available: true,
+      available: false,
+      route: null,
     },
     {
       id: 3,
       title: 'Dermatología Estética',
       category: 'specialty',
-      image: 'dermatology clinic',
+      emoji: '⚕️',
       features: [
         'Tratamientos detallados',
         'Precios transparentes',
         'Galería de resultados',
         'Sistema de reservas',
       ],
-      available: true,
+      available: false,
+      route: null,
     },
     {
       id: 4,
       title: 'Ortodoncia Especializada',
       category: 'dental',
-      image: 'orthodontics office',
+      emoji: '🦷',
       features: [
         'Tipos de ortodoncia',
         'Calculadora de presupuesto',
@@ -68,12 +71,13 @@ export default function Demos() {
         'Chat en vivo',
       ],
       available: false,
+      route: null,
     },
     {
       id: 5,
       title: 'Pediatría',
       category: 'medical',
-      image: 'pediatric clinic',
+      emoji: '👶',
       features: [
         'Área para padres',
         'Consejos de salud',
@@ -81,12 +85,13 @@ export default function Demos() {
         'Citas pediátricas',
       ],
       available: false,
+      route: null,
     },
     {
       id: 6,
       title: 'Fisioterapia',
       category: 'specialty',
-      image: 'physiotherapy clinic',
+      emoji: '🏃',
       features: [
         'Servicios de rehabilitación',
         'Ejercicios en línea',
@@ -94,6 +99,7 @@ export default function Demos() {
         'Seguimiento de pacientes',
       ],
       available: false,
+      route: null,
     },
   ];
 
@@ -144,7 +150,7 @@ export default function Demos() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredDemos.map((demo) => (
-              <Card key={demo.id} hover className="overflow-hidden">
+              <Card key={demo.id} className="overflow-hidden">
                 {/* Demo Preview */}
                 <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 -mx-6 -mt-6 mb-6 relative flex items-center justify-center">
                   {!demo.available && (
@@ -154,7 +160,9 @@ export default function Demos() {
                   )}
                   <div className="text-center p-8">
                     <div className="w-16 h-16 bg-white rounded-2xl shadow-lg mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-3xl">🏥</span>
+                      <span className="text-3xl" role="img" aria-label={demo.title}>
+                        {demo.emoji}
+                      </span>
                     </div>
                     <p className="text-sm text-muted-foreground">Vista previa del demo</p>
                   </div>
@@ -175,24 +183,21 @@ export default function Demos() {
                     ))}
                   </ul>
 
-                  {demo.available ? (
+                  {demo.available && demo.route ? (
                     <>
                       <Button
-                        variant="outline"
                         className="w-full mb-2"
-                        onClick={() => {
-                          // Would open a preview modal
-                          alert('Vista previa del demo');
-                        }}
+                        onClick={() => navigate(demo.route!)}
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <ExternalLink className="w-4 h-4 mr-2" />
                         Ver demo completo
                       </Button>
                       <Button
+                        variant="outline"
                         className="w-full"
                         onClick={() => navigate('/contact')}
                       >
-                        Quiero una demo así
+                        Quiero una web así
                       </Button>
                     </>
                   ) : (

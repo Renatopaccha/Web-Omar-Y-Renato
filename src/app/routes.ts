@@ -7,6 +7,15 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import NotFound from './pages/NotFound';
+import {
+  OdontologiaLayout,
+  OdontologiaHome,
+  OdontologiaServices,
+  OdontologiaCredentials,
+  OdontologiaBookAppointment,
+  OdontologiaContact,
+  OdontologiaPrivacy,
+} from '../features/demos/odontologia';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +29,18 @@ export const router = createBrowserRouter([
       { path: 'contact', Component: Contact },
       { path: 'privacy', Component: Privacy },
       { path: '*', Component: NotFound },
+    ],
+  },
+  {
+    path: '/demos/odontologia',
+    Component: OdontologiaLayout,
+    children: [
+      { index: true, Component: OdontologiaHome },
+      { path: 'servicios', Component: OdontologiaServices },
+      { path: 'credenciales', Component: OdontologiaCredentials },
+      { path: 'reservar', Component: OdontologiaBookAppointment },
+      { path: 'contacto', Component: OdontologiaContact },
+      { path: 'privacidad', Component: OdontologiaPrivacy },
     ],
   },
 ]);
