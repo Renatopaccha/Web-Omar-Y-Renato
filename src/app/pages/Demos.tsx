@@ -129,8 +129,8 @@ export default function Demos() {
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${selectedCategory === category.id
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'bg-muted text-foreground hover:bg-accent'
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'bg-muted text-foreground hover:bg-accent'
                   }`}
               >
                 {category.label}
@@ -182,7 +182,11 @@ export default function Demos() {
                         variant="outline"
                         className="w-full mb-2"
                         onClick={() => {
-                          alert(t('demos.page.preview'));
+                          if (demo.id === 1) {
+                            navigate('/demos/odontologia');
+                          } else {
+                            alert(t('demos.page.preview'));
+                          }
                         }}
                       >
                         <ExternalLink className="w-4 h-4" />

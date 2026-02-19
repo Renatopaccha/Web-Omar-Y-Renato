@@ -1,0 +1,26 @@
+/* Scoped theme for the Odontología Demo */
+/* These CSS custom properties override the main project's theme only within the .demo-odontologia wrapper */
+
+.demo-odontologia {
+  --background: #FEFAF6;
+  --foreground: #2D2D2D;
+  --card: #FFFFFF;
+  --card-foreground: #2D2D2D;
+  --popover: #FFFFFF;
+  --popover-foreground: #2D2D2D;
+  --primary: #0B4A6F;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F0;
+  --secondary-foreground: #2D2D2D;
+  --muted: #F5F5F0;
+  --muted-foreground: #6B6B6B;
+  --accent: #1A5F7A;
+  --accent-foreground: #FFFFFF;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: transparent;
+  --input-background: #FAFAF8;
+  --ring: #1A5F7A;
+  --gold-accent: #D4AF79;
+}

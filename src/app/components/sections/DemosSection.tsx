@@ -63,7 +63,7 @@ export function DemosSection() {
                       </li>
                     ))}
                   </ul>
-                  <Button variant="outline" className="w-full" onClick={() => navigate('/demos')}>
+                  <Button variant="outline" className="w-full" onClick={() => navigate(index === 0 ? '/demos/odontologia' : '/demos')}>
                     {t('demos.cta')}
                   </Button>
                 </CardContent>
